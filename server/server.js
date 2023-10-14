@@ -9,7 +9,7 @@ app.get('/hello', (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/budget', (req, res) => {
+app.get('/api/budget', (req, res) => {
     const budget = require('../src/budget-data.json');
     console.log(budget);
     res.json(budget);
