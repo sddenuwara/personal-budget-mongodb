@@ -15,8 +15,8 @@ app.get('/hello', (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/api/budget/fetch', async (req, res) => {
-    const data = {
+app.get('/api/budget/fetch', (req, res) => {
+    const budget = {
         labels: [],
         datasets: [{
             data: [],
@@ -28,13 +28,13 @@ app.get('/api/budget/fetch', async (req, res) => {
         .then(() => {
             budgetModel.find({})
                 .then((data) => {
-                    data.forEach(element => {
-                        data.labels.push(element.label);
-                        data.datasets[0].data.push(element.data);
-                        data.datasets[0].backgroundColor.push(element.backgroundColor);
-                    });
                     console.log(data);
-                    res.json(data);
+                    data.forEach(element => {
+                        budget.labels.push(element.label);
+                        budget.datasets[0].data.push(element.data);
+                        budget.datasets[0].backgroundColor.push(element.backgroundColor);
+                    });
+                    res.json(budget);
                     mongoose.connection.close();
                 })
                 .catch((connectionError) => {
@@ -46,7 +46,7 @@ app.get('/api/budget/fetch', async (req, res) => {
         });
 });
 
-app.post('/api/budget/add', async (req, res) => {
+app.post('/api/budget/add', (req, res) => {
 
     try {
         const { label, data, backgroundColor } = req.body;
