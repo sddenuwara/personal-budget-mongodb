@@ -22,10 +22,10 @@ class HomePage extends React.Component {
     }
 
     getBudget = () => {
-        axios.get('http://localhost:3000/budget')
+        axios.get('http://localhost:3000/api/budget/fetch')
         .then(response => {
             this.setState({ chartData: response.data });
-            console.log(this.state.chartData);
+            console.log(response.data);
         })
     };
 
