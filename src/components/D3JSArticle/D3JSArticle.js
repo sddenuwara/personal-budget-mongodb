@@ -31,8 +31,8 @@ class D3JSArticle extends React.Component {
 
     created3js = () => {
 
-        var width = 360;
-        var height = 360;
+        var width = 340;
+        var height = 340;
         var margin = 60;
         var radius = Math.min(width, height) / 2 - margin;
         var svg = null;
@@ -125,8 +125,12 @@ class D3JSArticle extends React.Component {
     }
 
     render() {
+        const displayStyle = {
+            display: 'block'
+        };
+    
         return (
-            <figure id="d3js"></figure>
+            <div id="d3js" style={displayStyle}></div>
         );
     }
 }

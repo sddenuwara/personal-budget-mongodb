@@ -55,7 +55,7 @@ app.post('/api/budget/add', (req, res) => {
         budgetModel.insertMany(newData)
             .then((data) => {
                 console.log(data);
-                res.json({status: 'success'});
+                res.json({addedData: data});
                 mongoose.connection.close();
             })
             .catch((connectionError) => {
